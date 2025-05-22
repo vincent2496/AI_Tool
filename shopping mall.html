@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plaza Grande - Premium Shopping Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-bar input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 25px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #ffd700;
+            color: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #ffed4a;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: #ffd700;
+            color: #333;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #ffed4a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+        }
+
+        /* Featured Stores */
+        .featured-stores {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .store-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .store-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .store-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .store-info {
+            padding: 1.5rem;
+        }
+
+        .store-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .store-category {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .store-description {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        .visit-store {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .visit-store:hover {
+            background: #5a6fd8;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: #667eea;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-store {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .search-bar input {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Plaza Grande</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#stores">Stores</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products...">
+                    <button>Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Plaza Grande</h1>
+            <p>Discover over 200 premium stores under one roof</p>
+            <a href="#stores" class="cta-button">Explore Stores</a>
+        </div>
+    </section>
+
+    <!-- Featured Stores -->
+    <section class="featured-stores" id="stores">
+        <div class="container">
+            <h2 class="section-title">Featured Stores</h2>
+            <div class="stores-grid">
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Fashion Forward</div>
+                        <div class="store-category">Clothing & Accessories</div>
+                        <div class="store-description">Trendy fashion for the modern lifestyle. Discover the latest collections from top designers.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Tech Galaxy</div>
+                        <div class="store-category">Electronics & Gadgets</div>
+                        <div class="store-description">Cutting-edge technology and the latest gadgets. From smartphones to smart homes.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Home & Living</div>
+                        <div class="store-category">Furniture & Decor</div>
+                        <div class="store-description">Transform your space with beautiful furniture and home accessories.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Sports Central</div>
+                        <div class="store-category">Sports & Fitness</div>
+                        <div class="store-description">Everything you need for an active lifestyle. Premium sportswear and equipment.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Beauty Haven</div>
+                        <div class="store-category">Cosmetics & Skincare</div>
+                        <div class="store-description">Premium beauty products and professional skincare solutions.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+                <div class="store-card">
+                    <div class="store-image" style="background-image: url('/api/placeholder/300/200');"></div>
+                    <div class="store-info">
+                        <div class="store-name">Book Nook</div>
+                        <div class="store-category">Books & Stationery</div>
+                        <div class="store-description">A paradise for book lovers with the latest releases and classic collections.</div>
+                        <button class="visit-store">Visit Store</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('/api/placeholder/250/200');"></div>
+                    <div class="product-info">
+                        <div class="product-name">Designer Handbag</div>
+                        <div class="product-price">$299.99</div>
+                        <div class="product-store">Fashion Forward</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('/api/placeholder/250/200');"></div>
+                    <div class="product-info">
+                        <div class="product-name">Wireless Headphones</div>
+                        <div class="product-price">$199.99</div>
+                        <div class="product-store">Tech Galaxy</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('/api/placeholder/250/200');"></div>
+                    <div class="product-info">
+                        <div class="product-name">Modern Coffee Table</div>
+                        <div class="product-price">$449.99</div>
+                        <div class="product-store">Home & Living</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('/api/placeholder/250/200');"></div>
+                    <div class="product-info">
+                        <div class="product-name">Running Shoes</div>
+                        <div class="product-price">$129.99</div>
+                        <div class="product-store">Sports Central</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Mall Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🅿️</div>
+                    <div class="service-title">Free Parking</div>
+                    <p>Complimentary parking for all visitors with over 2000 spaces available.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <div class="service-title">Food Court</div>
+                    <p>Diverse dining options with cuisines from around the world.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎬</div>
+                    <div class="service-title">Cinema Complex</div>
+                    <p>State-of-the-art movie theater with latest releases and comfortable seating.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👶</div>
+                    <div class="service-title">Kids Play Area</div>
+                    <p>Safe and fun play area for children with supervised activities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏧</div>
+                    <div class="service-title">ATM Services</div>
+                    <p>Multiple ATMs located throughout the mall for your convenience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛍️</div>
+                    <div class="service-title">Personal Shopping</div>
+                    <p>Professional shopping assistance to help you find exactly what you need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Plaza Grande</h3>
+                    <p>Your premier shopping destination with over 200 stores offering the best in fashion, electronics, home goods, and more.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#stores">Store Directory</a>
+                    <a href="#services">Services</a>
+                    <a href="#">Mall Map</a>
+                    <a href="#">Events</a>
+                    <a href="#">Gift Cards</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>Monday - Saturday: 10:00 AM - 10:00 PM</p>
+                    <p>Sunday: 11:00 AM - 8:00 PM</p>
+                    <p>Holidays: Check website for special hours</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📍 123 Shopping Boulevard, City, State 12345</p>
+                    <p>📞 (555) 123-4567</p>
+                    <p>✉️ info@plazagrande.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Plaza Grande Shopping Mall. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value;
+            if (searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+                // In a real application, this would trigger actual search functionality
+            }
+        });
+
+        // Store visit functionality
+        document.querySelectorAll('.visit-store').forEach(button => {
+            button.addEventListener('click', function() {
+                const storeName = this.closest('.store-card').querySelector('.store-name').textContent;
+                alert(`Welcome to ${storeName}! This would navigate to the store's page.`);
+            });
+        });
+    </script>
+</body>
+</html>
